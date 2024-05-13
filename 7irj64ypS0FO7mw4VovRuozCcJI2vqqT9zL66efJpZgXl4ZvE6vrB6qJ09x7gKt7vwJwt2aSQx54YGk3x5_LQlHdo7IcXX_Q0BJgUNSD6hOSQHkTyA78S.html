@@ -28,31 +28,13 @@
     display: block; /* 移除图片下方的空白间隙 */
     margin: 0; /* 图片周围的边距设为0 */
   }
-  .loading-spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(0,0,0,0.2);
-    border-top-color: #000;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    visibility: hidden; /* 默认隐藏 */
-  }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
 </style>
 </head>
 <body>
+
 <div class="scrollable-div">
-  <div class="loading-spinner"></div>
-  <img src="微信图片_202405131431533.jpg" alt="Demo Image" onload="this.previousElementSibling.style.visibility='hidden';">
+  <img src="微信图片_202405131431533.jpg" alt="Demo Image">
 </div>
 
-<script>
-  // 页面加载时立即显示加载动画
-  document.querySelector('.loading-spinner').style.visibility = 'visible';
-</script>
 </body>
 </html>
