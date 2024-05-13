@@ -1,0 +1,40 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Scrollable Div</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden; /* 隐藏水平滚动条，确保页面宽度严格适应 */
+    }
+  
+    .scrollable-div {
+      width: 100%; /* 宽度适应屏幕 */
+      max-height: 100vh; /* 最大高度为视口高度 */
+      overflow-y: auto; /* 内容超出时出现垂直滚动条 */
+      box-sizing: border-box;
+      padding: 20px; /* 可选：内边距美化 */
+      background-color: #f8f9fa; /* 背景颜色，可自定义 */
+    }
+  
+    .scrollable-div img {
+      max-width: 100%; /* 图片宽度不超过容器宽度 */
+      height: auto; /* 保持图片原始宽高比 */
+      display: block; /* 移除图片下方的空白间隙 */
+      margin: 20px 0; /* 上下外边距，美观 */
+    }
+  </style>
+  </head>
+  <body>
+  
+  <div class="scrollable-div">
+    <img src="微信图片_202405131431533.jpg" alt="Demo Image">
+  </div>
+  
+  </body>
+  </html>
