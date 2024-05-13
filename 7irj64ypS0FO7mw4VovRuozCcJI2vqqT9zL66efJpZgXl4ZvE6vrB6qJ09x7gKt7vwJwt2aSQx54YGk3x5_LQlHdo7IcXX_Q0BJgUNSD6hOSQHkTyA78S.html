@@ -3,38 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>中国教育考试网</title>
+<title>Responsive Scrollable Div with Loading Indicator</title>
 <style>
-  body, html,* {
+  body, html, * {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow-x: hidden; /* 隐藏水平滚动条，确保页面宽度严格适应 */
+    overflow-x: hidden;
   }
   
   .scrollable-div {
-    width: 100%; /* 宽度适应屏幕 */
-    max-height: 100vh; /* 最大高度为视口高度 */
-    overflow-y: auto; /* 内容超出时出现垂直滚动条 */
+    width: 100%;
+    max-height: 100vh;
+    overflow-y: auto;
     box-sizing: border-box;
-    padding: 0px; /* 内边距美化 */
-    background-color: #f8f9fa; /* 背景颜色，可自定义 */
+    padding: 0;
+    background-color: #f8f9fa;
+    position: relative; /* 添加相对定位以便绝对定位加载动画 */
   }
   
   .scrollable-div img {
-    max-width: 100%; /* 图片宽度不超过容器宽度 */
-    height: auto; /* 保持图片原始宽高比 */
-    display: block; /* 移除图片下方的空白间隙 */
-    margin: 0; /* 图片周围的边距设为0 */
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+  }
+  
+  /* 加载动画样式 */
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid #f3f3f3; /* 边框变细，让整体变小 */
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px; /* 宽度减半 */
+    height: 60px; /* 高度减半 */
+    animation: spin 1s linear infinite; /* 可选：加快旋转速度 */
+}
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 </style>
 </head>
 <body>
 
 <div class="scrollable-div">
-  <img src="微信图片_202405131431533.jpg" alt="Demo Image">
+  <!-- 加载动画 -->
+  <div class="loader" id="imageLoader"></div>
+  <img src="微信图片_202405131431533.jpg" alt="Demo Image" onload="hideLoader()" onerror="hideLoader()">
 </div>
+
+<script>
+  function hideLoader() {
+    document.getElementById('imageLoader').style.display = 'none';
+  }
+  // 如果需要，可以在页面加载时就显示加载动画
+  document.getElementById('imageLoader').style.display = 'block';
+</script>
 
 </body>
 </html>
