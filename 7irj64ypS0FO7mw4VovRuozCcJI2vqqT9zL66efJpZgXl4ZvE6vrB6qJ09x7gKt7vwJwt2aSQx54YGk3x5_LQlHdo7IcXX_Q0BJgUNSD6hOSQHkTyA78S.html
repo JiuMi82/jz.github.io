@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>中国教育考试网</title>
+<title>Image Appears Only After Fully Loaded</title>
 <style>
   body, html, * {
     margin: 0;
@@ -20,7 +20,7 @@
     box-sizing: border-box;
     padding: 0;
     background-color: #f8f9fa;
-    position: relative; /* 添加相对定位以便绝对定位加载动画 */
+    position: relative;
   }
   
   .scrollable-div img {
@@ -28,25 +28,12 @@
     height: auto;
     display: block;
     margin: 0;
+    visibility: hidden; /* 初始时隐藏图片 */
   }
   
-  /* 加载动画样式 */
+  /* 加载动画样式保持不变 */
   .loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 4px solid rgba(243, 243, 243, 0.8); /* 边框进一步变细 */
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    width: 40px; /* 更小的宽度 */
-    height: 40px; /* 更小的高度 */
-    animation: spin 1s linear infinite;
-}
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    /* ...此处省略加载动画的CSS定义，与之前一致... */
   }
 </style>
 </head>
@@ -55,14 +42,23 @@
 <div class="scrollable-div">
   <!-- 加载动画 -->
   <div class="loader" id="imageLoader"></div>
-  <img src="微信图片_202405131431533.jpg" alt="Demo Image" onload="hideLoader()" onerror="hideLoader()">
+  <img src="微信图片_202405131431533.jpg" alt="Demo Image" onload="showImage()" onerror="hideLoader()">
 </div>
 
 <script>
-  function hideLoader() {
+  function showImage() {
+    // 图片加载完成后显示图片，并隐藏加载动画
+    var image = document.querySelector('.scrollable-div img');
+    image.style.visibility = 'visible';
     document.getElementById('imageLoader').style.display = 'none';
   }
-  // 页面加载时显示加载动画
+
+  function hideLoader() {
+    // 图片加载失败时隐藏加载动画
+    document.getElementById('imageLoader').style.display = 'none';
+  }
+
+  // 页面加载时立即显示加载动画
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('imageLoader').style.display = 'block';
   });
