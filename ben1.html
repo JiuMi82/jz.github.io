@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>中国考试教育网</title>
+<style>
+  body, html, * {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
+  .scrollable-div {
+    width: 100%;
+    max-height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 0;
+    background-color: #f8f9fa;
+    position: relative;
+  }
+  
+  .scrollable-div img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    visibility: hidden; /* 初始时隐藏图片 */
+  }
+  
+  /* 加载动画样式保持不变 */
+  .loader {
+    /* ...此处省略加载动画的CSS定义，与之前一致... */
+  }
+</style>
+</head>
+<body>
+
+<div class="scrollable-div">
+  <!-- 加载动画 -->
+  <div class="loader" id="imageLoader"></div>
+  <img src="本.png" alt="Demo Image" onload="showImage()" onerror="hideLoader()">
+</div>
+
+<script>
+  function showImage() {
+    // 图片加载完成后显示图片，并隐藏加载动画
+    var image = document.querySelector('.scrollable-div img');
+    image.style.visibility = 'visible';
+    document.getElementById('imageLoader').style.display = 'none';
+  }
+
+  function hideLoader() {
+    // 图片加载失败时隐藏加载动画
+    document.getElementById('imageLoader').style.display = 'none';
+  }
+
+  // 页面加载时立即显示加载动画
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('imageLoader').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
